@@ -1,0 +1,13 @@
+{
+  "drones": [
+    {
+      "protecao": false,
+      "pesoMaximo": 100.0,
+      "codigo": 1212,
+      "custoFixo": 100.0,
+      "autonomia": 50.0,
+      "type": "DroneCargaInanimada"
+    }
+  ],
+  "transportesPendentes": []
+}

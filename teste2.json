@@ -1,0 +1,32 @@
+{
+  "drones": [
+    {
+      "qtdMaxPessoas": 5,
+      "codigo": 1234,
+      "custoFixo": 100.0,
+      "autonomia": 50.0,
+      "type": "DronePessoal"
+    }
+  ],
+  "transportesPendentes": [
+    {
+      "cargaPerigosa": false,
+      "numero": 101,
+      "nomeCliente": "Circo do seu léo",
+      "descricao": "transporte de caixas",
+      "peso": 500.0,
+      "latitudeOrigem": -30.0346,
+      "latitudeDestino": -51.6854,
+      "longitudeOrigem": -29.4523,
+      "longitudeDestino": -54.3409,
+      "situacao": "PENDENTE",
+      "drone": {
+        "qtdMaxPessoas": 5,
+        "codigo": 1234,
+        "custoFixo": 100.0,
+        "autonomia": 50.0,
+        "type": "DronePessoal"
+      }
+    }
+  ]
+}
