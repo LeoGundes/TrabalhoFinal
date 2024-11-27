@@ -26,4 +26,9 @@ public class DronePessoal extends Drone {
     public void setQtdMaxPessoas(int qtdMaxPessoas) {
         this.qtdMaxPessoas = qtdMaxPessoas;
     }
+
+    @Override
+    public String toString() {
+        return "Drone Pessoal"+ super.toString();
+    }
 }

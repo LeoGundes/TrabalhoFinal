@@ -17,4 +17,8 @@ public abstract class DroneCarga extends Drone {
     public void setPesoMaximo(double pesoMaximo) {
         this.pesoMaximo = pesoMaximo;
     }
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

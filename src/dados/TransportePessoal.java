@@ -3,8 +3,8 @@ package dados;
 public class TransportePessoal extends Transporte {
     private int qtdPessoas;
 
-    public TransportePessoal(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem, double longitudeOrigem, double latitudeDestino, double longitudeDestino, Estado estado,Drone drone, int qtdPessoas) {
-        super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem,latitudeDestino, longitudeDestino, estado, drone);
+    public TransportePessoal(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem, double longitudeOrigem, double latitudeDestino, double longitudeDestino, Estado estado, int qtdPessoas) {
+        super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem,latitudeDestino, longitudeDestino, estado);
         this.qtdPessoas = qtdPessoas;
     }
 

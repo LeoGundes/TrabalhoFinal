@@ -1,0 +1,32 @@
+{
+  "drones": [
+    {
+      "qtdMaxPessoas": 321,
+      "codigo": 312,
+      "custoFixo": 312.0,
+      "autonomia": 123.0,
+      "type": "DronePessoal"
+    }
+  ],
+  "transportesPendentes": [
+    {
+      "qtdPessoas": 213,
+      "numero": 312,
+      "nomeCliente": "23",
+      "descricao": "32",
+      "peso": 2323.0,
+      "latitudeOrigem": 32.0,
+      "latitudeDestino": 32.0,
+      "longitudeOrigem": 23.0,
+      "longitudeDestino": 32.0,
+      "situacao": "PENDENTE",
+      "drone": {
+        "qtdMaxPessoas": 321,
+        "codigo": 312,
+        "custoFixo": 312.0,
+        "autonomia": 123.0,
+        "type": "DronePessoal"
+      }
+    }
+  ]
+}

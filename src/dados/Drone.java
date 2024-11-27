@@ -30,7 +30,7 @@ public abstract class Drone {
 
     @Override
     public String toString() {
-        return "Drone Código: " + codigo + ", Custo Fixo: " + custoFixo + ", Autonomia: " + autonomia + " km";
+        return  " Código: " + codigo + ", Custo Fixo: " + custoFixo + ", Autonomia: " + autonomia + " km";
     }
 
 }

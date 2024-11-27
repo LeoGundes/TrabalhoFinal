@@ -9,10 +9,7 @@ import dados.Transporte;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class ACMEAirDrones {
 
@@ -33,7 +30,7 @@ public class ACMEAirDrones {
             }
         }
         drones.add(novoDrone);
-        drones.sort((d1, d2) -> Integer.compare(d1.getCodigo(), d2.getCodigo())); // Ordena por código
+        drones.sort(Comparator.comparingInt(Drone::getCodigo)); // Ordena por código
         return true;
     }
 

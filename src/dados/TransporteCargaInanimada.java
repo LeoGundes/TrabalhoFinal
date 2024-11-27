@@ -5,8 +5,8 @@ public class TransporteCargaInanimada extends Transporte {
 
     public TransporteCargaInanimada(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem,
                                     double longitudeOrigem, double latitudeDestino, double longitudeDestino, Estado estado,
-                                    boolean cargaPerigosa, Drone drone) {
-        super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino, estado, drone);
+                                    boolean cargaPerigosa) {
+        super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino, estado);
         this.cargaPerigosa = cargaPerigosa;
     }
 

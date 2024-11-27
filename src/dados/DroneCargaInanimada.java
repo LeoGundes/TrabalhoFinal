@@ -25,4 +25,8 @@ public class DroneCargaInanimada extends DroneCarga {
     public void setProtecao(boolean protecao) {
         this.protecao = protecao;
     }
+    @Override
+    public String toString() {
+        return "Drone de Carga Inanimada"+super.toString();
+    }
 }

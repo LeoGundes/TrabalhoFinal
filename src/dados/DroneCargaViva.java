@@ -25,4 +25,8 @@ public class DroneCargaViva extends DroneCarga {
     public void setClimatizado(boolean climatizado) {
         this.climatizado = climatizado;
     }
+    @Override
+    public String toString(){
+        return "Drone Carga Viva"+ super.toString();
+    }
 }
