@@ -24,7 +24,6 @@ public class CadastroTransporteDialog extends JDialog {
     private JTextField campoTemperaturaMaxima;
     private JTextField campoQtdPessoas;
 
-    // Labels adicionais
     private JLabel labelCargaPerigosa;
     private JLabel labelTemperaturaMinima;
     private JLabel labelTemperaturaMaxima;
@@ -34,14 +33,13 @@ public class CadastroTransporteDialog extends JDialog {
 
     public CadastroTransporteDialog(JFrame parent, ACMEAirDrones sistema) {
         super(parent, "Cadastrar Transporte", true);
-        this.sistema = sistema; // Inicializa o sistema passado no construtor
+        this.sistema = sistema;
         inicializarUI();
     }
 
     private void inicializarUI() {
         setLayout(new GridLayout(0, 2, 10, 10));
 
-        // Campos básicos
         add(new JLabel("Número do Transporte:"));
         campoNumero = new JTextField();
         add(campoNumero);
@@ -74,48 +72,44 @@ public class CadastroTransporteDialog extends JDialog {
         campoLongitudeDestino = new JTextField();
         add(campoLongitudeDestino);
 
-        // Tipo de transporte
         add(new JLabel("Tipo de Transporte:"));
         comboTipoTransporte = new JComboBox<>(new String[]{"TransporteCargaInanimada", "TransporteCargaViva", "TransportePessoal"});
         add(comboTipoTransporte);
 
-        // Inicializando drones
         add(new JLabel("Selecione o Drone:"));
         List<Drone> listaDrones = new ArrayList<>(Arrays.asList(sistema.getDrones()));
         comboDrones = new JComboBox<>(listaDrones.toArray(new Drone[0]));
         add(comboDrones);
 
-        // Campos adicionais (começam ocultos)
+
         labelCargaPerigosa = new JLabel("Carga Perigosa:");
         campoCargaPerigosa = new JCheckBox();
         add(labelCargaPerigosa);
         add(campoCargaPerigosa);
-        labelCargaPerigosa.setVisible(false); // Inicialmente oculto
-        campoCargaPerigosa.setVisible(false); // Inicialmente oculto
+        labelCargaPerigosa.setVisible(false);
+        campoCargaPerigosa.setVisible(false);
 
         labelTemperaturaMinima = new JLabel("Temperatura Mínima:");
         campoTemperaturaMinima = new JTextField();
         add(labelTemperaturaMinima);
         add(campoTemperaturaMinima);
-        labelTemperaturaMinima.setVisible(false); // Inicialmente oculto
-        campoTemperaturaMinima.setVisible(false); // Inicialmente oculto
+        labelTemperaturaMinima.setVisible(false);
+        campoTemperaturaMinima.setVisible(false);
 
         labelTemperaturaMaxima = new JLabel("Temperatura Máxima:");
         campoTemperaturaMaxima = new JTextField();
         add(labelTemperaturaMaxima);
         add(campoTemperaturaMaxima);
-        labelTemperaturaMaxima.setVisible(false); // Inicialmente oculto
-        campoTemperaturaMaxima.setVisible(false); // Inicialmente oculto
+        labelTemperaturaMaxima.setVisible(false);
+        campoTemperaturaMaxima.setVisible(false);
 
         labelQtdPessoas = new JLabel("Quantidade de Pessoas:");
         campoQtdPessoas = new JTextField();
         add(labelQtdPessoas);
         add(campoQtdPessoas);
-        labelQtdPessoas.setVisible(false); // Inicialmente oculto
-        campoQtdPessoas.setVisible(false); // Inicialmente oculto
+        labelQtdPessoas.setVisible(false);
+        campoQtdPessoas.setVisible(false);
 
-        // Botões
-        // Botões
         JButton botaoConfirmar = new JButton("Confirmar");
         botaoConfirmar.addActionListener(e -> confirmarCadastro());
         add(botaoConfirmar);
@@ -127,22 +121,16 @@ public class CadastroTransporteDialog extends JDialog {
         pack();
         setLocationRelativeTo(getParent());
 
-
-// Adiciona o ActionListener para mudar os campos de acordo com o tipo de transporte selecionado
         comboTipoTransporte.addActionListener(e -> atualizarCamposAdicionais());
     }
 
-    // Método para atualizar os campos adicionais
     private void atualizarCamposAdicionais() {
-        // Recupera o tipo de transporte selecionado
         String tipoTransporte = (String) comboTipoTransporte.getSelectedItem();
 
-        // Lógica para exibir campos com base no tipo de transporte
         boolean exibirCargaPerigosa = tipoTransporte.equals("TransporteCargaInanimada");
         boolean exibirTemperatura = tipoTransporte.equals("TransporteCargaViva");
         boolean exibirQtdPessoas = tipoTransporte.equals("TransportePessoal");
 
-        // Exibe ou oculta os campos conforme necessário
         labelCargaPerigosa.setVisible(exibirCargaPerigosa);
         campoCargaPerigosa.setVisible(exibirCargaPerigosa);
         labelTemperaturaMinima.setVisible(exibirTemperatura);
@@ -152,14 +140,12 @@ public class CadastroTransporteDialog extends JDialog {
         labelQtdPessoas.setVisible(exibirQtdPessoas);
         campoQtdPessoas.setVisible(exibirQtdPessoas);
 
-        // Reajusta o layout para mostrar os campos corretamente
         pack();
     }
 
-    // Método para confirmar o cadastro do transporte
     private void confirmarCadastro() {
+
         try {
-            // Obtém os valores básicos
             int numero = Integer.parseInt(campoNumero.getText());
             String nomeCliente = campoNomeCliente.getText();
             String descricao = campoDescricao.getText();
@@ -170,26 +156,22 @@ public class CadastroTransporteDialog extends JDialog {
             double longitudeDestino = Double.parseDouble(campoLongitudeDestino.getText());
             String tipoTransporte = (String) comboTipoTransporte.getSelectedItem();
 
-            // Obtém o drone selecionado
             Drone drone = (Drone) comboDrones.getSelectedItem();
-            //arrumar isso, talvez seja inutil
 
-            // Verificação do tipo de drone para o tipo de transporte
             if (!verificarCompatibilidadeTipoTransporte(tipoTransporte, drone)) {
-                if(drone!=null) {
+                if(drone != null) {
                     JOptionPane.showMessageDialog(this, "O drone selecionado não é compatível com o tipo de transporte.", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
 
-            // Cria o transporte de acordo com o tipo selecionado
             Transporte novoTransporte;
             switch (tipoTransporte) {
                 case "TransporteCargaInanimada":
                     boolean cargaPerigosa = campoCargaPerigosa.isSelected();
                     novoTransporte = new TransporteCargaInanimada(numero, nomeCliente, descricao, peso,
                             latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino,
-                            Estado.PENDENTE, cargaPerigosa,drone);
+                            Estado.PENDENTE, cargaPerigosa, drone);
                     novoTransporte.setDrone(drone);
                     break;
                 case "TransporteCargaViva":
@@ -197,14 +179,14 @@ public class CadastroTransporteDialog extends JDialog {
                     double temperaturaMaxima = Double.parseDouble(campoTemperaturaMaxima.getText());
                     novoTransporte = new TransporteCargaViva(numero, nomeCliente, descricao, peso, latitudeOrigem,
                             longitudeOrigem, latitudeDestino, longitudeDestino, Estado.PENDENTE,
-                            temperaturaMinima, temperaturaMaxima,drone);
+                            temperaturaMinima, temperaturaMaxima, drone);
                     novoTransporte.setDrone(drone);
                     break;
                 case "TransportePessoal":
                     int qtdPessoas = Integer.parseInt(campoQtdPessoas.getText());
                     novoTransporte = new TransportePessoal(numero, nomeCliente, descricao, peso,
                             latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino,
-                            Estado.PENDENTE, qtdPessoas,drone);
+                            Estado.PENDENTE, qtdPessoas, drone);
                     novoTransporte.setDrone(drone);
                     break;
                 default:
@@ -212,10 +194,9 @@ public class CadastroTransporteDialog extends JDialog {
                     return;
             }
 
-            // Adiciona o transporte ao sistema
             if (sistema.cadastrarTransporte(novoTransporte)) {
                 JOptionPane.showMessageDialog(this, "Transporte cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                dispose(); // Fecha a janela
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao cadastrar transporte. Verifique os dados.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
@@ -224,17 +205,16 @@ public class CadastroTransporteDialog extends JDialog {
         }
     }
 
-    // Método para verificar a compatibilidade do tipo de transporte com o drone
     private boolean verificarCompatibilidadeTipoTransporte(String tipoTransporte, Drone drone) {
         if (tipoTransporte.equals("TransporteCargaInanimada") && !(drone instanceof DroneCargaInanimada)) {
-            return false; // Drone de carga necessário para Carga Inanimada
+            return false;
         }
         if (tipoTransporte.equals("TransporteCargaViva") && !(drone instanceof DroneCargaViva)) {
-            return false; // Drone com controle de temperatura necessário para Carga Viva
+            return false;
         }
         if (tipoTransporte.equals("TransportePessoal") && !(drone instanceof DronePessoal)) {
-            return false; // Drone pessoal necessário para Transporte Pessoal
+            return false;
         }
-        return true; // Caso o drone seja compatível com o tipo de transporte
+        return true;
     }
 }
