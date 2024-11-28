@@ -6,9 +6,9 @@ public class TransporteCargaViva extends Transporte {
 
     public TransporteCargaViva(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem,
                              double longitudeOrigem, double latitudeDestino, double longitudeDestino, Estado situacao,
-                                                                 double temperaturaMinima, double temperaturaMaxima) {
+                                                                 double temperaturaMinima, double temperaturaMaxima,Drone drone) {
                                super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino,
-                                       situacao);
+                                       situacao,drone);
                                this.temperaturaMaxima = temperaturaMaxima;
                                this.temperaturaMinima = temperaturaMinima;
     }
@@ -24,6 +24,11 @@ public class TransporteCargaViva extends Transporte {
         return custoTransporte + acrescimo;
     }
 
+    public void setDrone(Drone drone) {
+        if (getDrone() != null) {
+            setSituacao(Estado.ALOCADO);
+        }
+    }
     // Getters e setters para temperaturaMinima e temperaturaMaxima
     public double getTemperaturaMinima() {
         return temperaturaMinima;

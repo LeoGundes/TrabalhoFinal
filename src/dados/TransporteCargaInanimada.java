@@ -5,8 +5,8 @@ public class TransporteCargaInanimada extends Transporte {
 
     public TransporteCargaInanimada(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem,
                                     double longitudeOrigem, double latitudeDestino, double longitudeDestino, Estado estado,
-                                    boolean cargaPerigosa) {
-        super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino, estado);
+                                    boolean cargaPerigosa, Drone drone) {
+        super(numero, nomeCliente, descricao, peso, latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino, estado,drone);
         this.cargaPerigosa = cargaPerigosa;
     }
 
@@ -20,6 +20,11 @@ public class TransporteCargaInanimada extends Transporte {
         return custoTransporte + acrescimo;
     }
 
+    public void setDrone(Drone drone) {
+if (getDrone()!=null){
+    setSituacao(Estado.ALOCADO);
+}
+    }
     // Getters e setters para cargaPerigosa
     public boolean isCargaPerigosa() {
         return cargaPerigosa;

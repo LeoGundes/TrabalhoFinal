@@ -12,7 +12,7 @@ public abstract class Transporte {
     private Estado situacao;
     private Drone drone;
 
-    public Transporte(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem, double latitudeDestino, double longitudeOrigem, double longitudeDestino, Estado situacao) {
+    public Transporte(int numero, String nomeCliente, String descricao, double peso, double latitudeOrigem, double latitudeDestino, double longitudeOrigem, double longitudeDestino, Estado situacao, Drone drone) {
         this.numero = numero;
         this.nomeCliente = nomeCliente;
         this.descricao = descricao;
@@ -22,7 +22,7 @@ public abstract class Transporte {
         this.longitudeOrigem = longitudeOrigem;
         this.longitudeDestino = longitudeDestino;
         this.situacao = situacao;
-
+        this.drone = drone;
     }
 
     public abstract double calculaCusto();
@@ -122,5 +122,6 @@ public abstract class Transporte {
 
     public void setDrone(Drone drone) {
         this.drone = drone;
+        this.situacao = Estado.ALOCADO;
     }
 }

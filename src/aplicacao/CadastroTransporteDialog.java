@@ -172,15 +172,14 @@ public class CadastroTransporteDialog extends JDialog {
 
             // Obtém o drone selecionado
             Drone drone = (Drone) comboDrones.getSelectedItem();
-            if (drone == null) {
-                JOptionPane.showMessageDialog(this, "Selecione um drone para o transporte.", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            //arrumar isso, talvez seja inutil
 
             // Verificação do tipo de drone para o tipo de transporte
             if (!verificarCompatibilidadeTipoTransporte(tipoTransporte, drone)) {
-                JOptionPane.showMessageDialog(this, "O drone selecionado não é compatível com o tipo de transporte.", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
+                if(drone!=null) {
+                    JOptionPane.showMessageDialog(this, "O drone selecionado não é compatível com o tipo de transporte.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
 
             // Cria o transporte de acordo com o tipo selecionado
@@ -190,20 +189,23 @@ public class CadastroTransporteDialog extends JDialog {
                     boolean cargaPerigosa = campoCargaPerigosa.isSelected();
                     novoTransporte = new TransporteCargaInanimada(numero, nomeCliente, descricao, peso,
                             latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino,
-                            Estado.PENDENTE, cargaPerigosa);
+                            Estado.PENDENTE, cargaPerigosa,drone);
+                    novoTransporte.setDrone(drone);
                     break;
                 case "TransporteCargaViva":
                     double temperaturaMinima = Double.parseDouble(campoTemperaturaMinima.getText());
                     double temperaturaMaxima = Double.parseDouble(campoTemperaturaMaxima.getText());
                     novoTransporte = new TransporteCargaViva(numero, nomeCliente, descricao, peso, latitudeOrigem,
                             longitudeOrigem, latitudeDestino, longitudeDestino, Estado.PENDENTE,
-                            temperaturaMinima, temperaturaMaxima);
+                            temperaturaMinima, temperaturaMaxima,drone);
+                    novoTransporte.setDrone(drone);
                     break;
                 case "TransportePessoal":
                     int qtdPessoas = Integer.parseInt(campoQtdPessoas.getText());
                     novoTransporte = new TransportePessoal(numero, nomeCliente, descricao, peso,
                             latitudeOrigem, longitudeOrigem, latitudeDestino, longitudeDestino,
-                            Estado.PENDENTE, qtdPessoas);
+                            Estado.PENDENTE, qtdPessoas,drone);
+                    novoTransporte.setDrone(drone);
                     break;
                 default:
                     JOptionPane.showMessageDialog(this, "Tipo de transporte inválido.", "Erro", JOptionPane.ERROR_MESSAGE);
